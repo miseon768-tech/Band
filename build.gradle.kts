@@ -1,6 +1,8 @@
+import org.gradle.internal.impldep.org.bouncycastle.asn1.x500.style.RFC4519Style.l
+
 plugins {
 	java
-	id("org.springframework.boot") version "4.0.4"
+	id("org.springframework.boot") version "3.5.9"
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -25,8 +27,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
-    implementation("javax.servlet:jstl")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	compileOnly("org.projectlombok:lombok")
