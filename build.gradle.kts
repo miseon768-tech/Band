@@ -25,6 +25,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
+    implementation("javax.servlet:jstl")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	compileOnly("org.projectlombok:lombok")
