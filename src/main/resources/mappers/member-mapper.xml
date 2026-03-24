@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.classroom.domain.member.mapper.MemberMapper">
+    <insert id="insertOne" parameterType="member">
+        insert into member(id, password, email, name, gender, birthday)
+            values (#{id}, #{password}, #{email}, #{name}, #{gender}, #{birthday})
+    </insert>
+    <select id="selectById" parameterType="string" resultType="member">
+        select * from member where id = #{id}
+    </select>
+    <select id="selectByIds" parameterType="list" resultType="member">
+        select * from member where id in
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </select>
+    <update id="updateActive" parameterType="string">
+        update member set active=true where id = #{id}
+    </update>
+    <update id="updateImage" parameterType="map">
+        update member set image= #{image} where id = #{id}
+    </update>
+</mapper>

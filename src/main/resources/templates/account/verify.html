@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <title>account verify</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100">
+<div class="w-full h-screen flex items-center justify-center">
+    <div class="w-3xl bg-white rounded-lg p-10 flex flex-col md:flex-row gap-8 shadow-sm">
+
+        <div class="flex-1">
+            <h1 class="text-3xl">Classroom 계정 인증</h1>
+            <p class="mt-5 text-gray-600">
+                이메일로 받은 <b>6자리 인증코드</b>를 입력하세요.<br/>
+                코드는 발급 후 30분 동안만 유효합니다.
+            </p>
+            <ul class="mt-4 space-y-1 text-sm text-gray-500 list-disc pl-5">
+                <li>코드가 오지 않았다면 스팸함을 확인해 주세요.</li>
+                <li>만료되었다면 <em>코드 재전송</em>을 눌러 새 코드를 받으세요.</li>
+            </ul>
+        </div>
+
+
+        <div class="flex-1">
+            <form class="space-y-3" action="/account/verify" method="post" autocomplete="on"
+                  onsubmit="return false;">
+                <input type="hidden" name="memberId" value="${sessionScope.logonMember.id}">
+                <div>
+                    <label class="text-gray-600">인증코드</label>
+                    <div class="grid grid-cols-6 gap-2 mt-2">
+                        <input type="text" onkeydown="moveFocus(event);"
+                               inputmode="numeric" class="p-3 rounded-xl text-lg text-center border border-black/20 text-bold"/>
+                        <input type="text" onkeydown="moveFocus(event);"
+                               inputmode="numeric" class="p-3 rounded-xl text-lg text-center border border-black/20 text-bold"/>
+                        <input type="text" onkeydown="moveFocus(event);"
+                               inputmode="numeric" class="p-3 rounded-xl text-lg text-center border border-black/20 text-bold"/>
+                        <input type="text" onkeydown="moveFocus(event);"
+                               inputmode="numeric" class="p-3 rounded-xl text-lg text-center border border-black/20 text-bold"/>
+                        <input type="text" onkeydown="moveFocus(event);"
+                               inputmode="numeric" class="p-3 rounded-xl text-lg text-center border border-black/20 text-bold"/>
+                        <input type="text" onkeydown="moveFocus(event);"
+                               inputmode="numeric" class="p-3 rounded-xl text-lg text-center border border-black/20 text-bold"/>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <a onclick="sendVerifyResend();"
+                       class="text-sm text-gray-600 hover:underline cursor-pointer"
+                       id="svr"
+                    >코드 재전송</a>
+                    <button class="border border-stone-400 rounded px-4 py-2 hover:bg-gray-50">
+                        인증하기
+                    </button>
+                </div>
+            </form>
+            <div class="mt-3 text-sm text-right space-x-4">
+                <a href="/login" class="text-gray-600 hover:underline">로그인으로 돌아가기</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function moveFocus(event) {
+        const $elm =event.target;
+        const key = event.key;
+        if(["Backspace", "Tab", "ArrowRight", "ArrowLeft"].includes(key)) {
+            return;
+        }
+        if(!/[0-9]/.test(key)) {
+            return event.preventDefault();
+        }
+        if($elm.value) {
+            $elm.value="";
+        }
+        setTimeout(function() {
+            if($elm.value) {
+                $elm.nextElementSibling.focus();
+            }
+        }, 10)
+
+
+
+    }
+
+
+    function sendVerifyResend() {
+        const $svr = document.getElementById("svr");
+        const xhr = new XMLHttpRequest();
+        xhr.open("post", "/ajax/account/verify/resend")
+        xhr.onloadend = function () {
+            $svr.classList.add("cursor-pointer");
+            $svr.classList.remove("cursor-wait");
+            $svr.classList.remove("animate-bounce");
+            $svr.disabled = false;
+        };
+        xhr.send();
+        $svr.disabled = true;
+        $svr.classList.remove("cursor-pointer");
+        $svr.classList.add("cursor-wait");
+        $svr.classList.add("animate-bounce");
+    }
+
+</script>
+</body>
+</html>

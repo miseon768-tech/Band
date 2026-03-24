@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.classroom.domain.classroom.mapper.ClassroomMapper">
+    <insert id="insertOne" parameterType="classroom">
+        insert into classroom(id, teacher_id, name, description, join_code)
+            values(#{id}, #{teacherId}, #{name}, #{description}, #{joinCode})
+    </insert>
+    <select id="selectById" parameterType="string" resultType="classroom">
+        select * from classroom where id=#{id}
+    </select>
+    <select id="selectByJoinCode" parameterType="string" resultType="classroom">
+        select * from classroom where join_code=#{joinCode }
+    </select>
+    <select id="selectByTeacherIdOrStudentId" parameterType="string" resultType="classroomWithTeacher">
+        select classroom.*, teacher_id=#{id} as teacher from classroom
+            where teacher_id =#{id}
+                or
+            id in (select classroom_id from classroom_member where student_id=#{id} )
+        order by teacher desc, name asc
+    </select>
+</mapper>

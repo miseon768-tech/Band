@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>클래스룸 | 홈</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+<!-- 상단 네비 -->
+<nav class="fixed left-0 right-0 flex p-5 justify-between items-center bg-stone-100 h-15 z-10">
+    <div class="flex items-center gap-3">
+        <img src="/images/logo-wide.png" class="underline h-14"/>
+        <a th:text="${classroom.name}"
+           th:href="@{/classroom/{id}(id=${classroom.id})}"></a>
+    </div>
+    <div class="flex items-center gap-4">
+        <button th:text="${session.logonMember.name.charAt(0)}"
+                type="button" class="rounded-4xl bg-emerald-700/60 text-white px-3 py-2 hover:bg-emerald-700/80">
+            윤
+        </button>
+    </div>
+</nav>
+<div class="min-h-screen bg-stone-100 pt-17 flex z-5">
+    <aside class="flex-1 px-3 hidden md:block">
+        <ul class="space-y-2">
+            <li class="flex items-center gap-2 hover:bg-stone-200 px-3 py-2 rounded-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+                </svg>
+                홈
+            </li>
+            <li class="flex items-center gap-2 hover:bg-stone-200 px-3 py-2 rounded-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
+                </svg>
+                캘린더
+            </li>
+            <li class="flex items-center gap-2 hover:bg-stone-200 px-3 py-2 rounded-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+                </svg>
+
+                수업
+            </li>
+            <li class="hidden">
+                <ul>
+                    <li>데이터베이스 개론</li>
+                    <li>자료구조</li>
+                </ul>
+            </li>
+            <li class="flex items-center gap-2 hover:bg-stone-200 px-3 py-2 rounded-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                </svg>
+                설정
+            </li>
+        </ul>
+    </aside>
+    <main class="flex-4 bg-white rounded-tl-3xl relative">
+        <!-- 클래스룸 메인 나비 -->
+        <nav class="px-10 border-b border-b-stone-300 bg-white">
+            <ul class="flex gap-10">
+                <li class="p-4 text-emerald-400 border-b-3 border-b-emerald-600 font-bold hover:bg-emerald-100">
+                    <a href="#">게시판</a>
+                </li>
+
+                <li class="p-4">
+                    <a th:href="@{/classroom/{classroomId}/attendance(classroomId=${classroom.id})}">사용자</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- 클래스룸 기본 정보 -->
+        <section class="px-4 py-2">
+            <div class="p-6 h-50 bg-gradient-to-r from-emerald-600 to-emerald-300 text-white rounded-2xl ">
+                <h1 class="text-3xl font-bold" th:text="${classroom.name}"></h1>
+                <p class="mt-5 text-lg" th:text="${classroom.description}"></p>
+                <p class="text-right text-emerald-800">
+                    수업코드 <span class="text-2xl" th:text="${classroom.joinCode}"></span>
+                </p>
+                <div th:if="${mode =='STUDENT'}" class="text-right mt-2">
+                    <button type="button" onclick="sendDailyCheck(this);" th:data-cid="${classroom.id}"
+                            th:class="|px-4 py-2 rounded-full hover:shadow-md duration-200 text-sm font-semi-bold
+                            ${exist ? 'bg-black/90 hover:bg-black text-white' : 'bg-white/90 hover:bg-white text-emerald-700'}  |"
+                            th:disabled="${exist}"
+                    >
+                        <span th:text="${exist ? '출석 완료' : '출석 체크'}"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <div class="px-4 py-2" th:if="${mode == 'TEACHER'}">
+            <button class="px-5 py-2 bg-emerald-200/30 flex gap-1 rounded-3xl text-md hover:bg-emerald-200 text-emerald-600"
+                    onclick="showWriteModal();">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"/>
+                </svg>
+                <span>새 공지사항</span>
+            </button>
+        </div>
+        <!-- 공지사항 리스트 -->
+        <section class="p-4 space-y-2">
+            <article th:each="one : ${notices}" class="p-3 bg-emerald-100/20 rounded-2xl">
+                <!-- 공지사항 내용 영역 -->
+                <div>
+                    <div class="space-y-2">
+                        <div>
+                            <b th:text="${classroom.teacherId}"></b>
+                            <small th:text="${one.createdAt}"></small>
+                        </div>
+                        <div th:text="${one.content}"></div>
+                    </div>
+                    <div class="p-3 grid grid-cols-2 gap-4">
+                        <div class="bg-white rounded-2xl p-3 border border-stone-200"
+                             th:each="attach : ${one.attachments}">
+                            <a th:href="@{${attach.fileUrl}}" download>
+                                <div th:text="${attach.fileName}" class="text-lg"></div>
+                                <p>
+                                    <span th:text="${attach.fileContentType}"></span>
+                                    <small th:text="|${attach.fileSize} bytes|"></small>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글 영역 -->
+                <div class="border-t border-black/50 py-2">
+
+                    <!-- 댓글 작성 폼 -->
+                    <form class="flex items-center gap-3 p-2" th:action="@{/classroom/{cid}/reply(cid=${classroom.id})}"
+                          method="post">
+                        <input type="hidden" name="noticeId" th:value="${one.id}"/>
+                        <span th:text="${session.logonMember.name.charAt(0)}"
+                              class="rounded-4xl bg-emerald-700/60 text-white px-3 py-2 hover:bg-emerald-700/80 block">윤</span>
+                        <input type="text" class="flex-1 p-4 py-2 rounded-2xl bg-white border border-black/20"
+                               name="content"/>
+                        <button class="text-black/50 hover:bg-stone-100 px-3 py-2 rounded-4xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/>
+                            </svg>
+                        </button>
+                    </form>
+                    <!-- 댓글 리스트 -->
+                    <div th:each="r : ${one.replys}"
+                         class="flex items-center gap-3 mb-1 p-2">
+
+                        <!-- 작성자 이니셜 -->
+                        <div class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-600/70 text-white font-semibold">
+                            <span th:text="${r.writerId.charAt(0)}"></span>
+                        </div>
+                        <!-- 댓글 내용 박스 -->
+                        <div class="text-stone-600 text-sm mt-1 leading-5" th:text="${r.content}"></div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+    </main>
+</div>
+<!-- 공지사항 등록 폼 -->
+<div class="hidden absolute inset-1 bg-black/30 rounded-xl flex items-center justify-center" id="writeModal"
+     onclick="closeWriteModal();">
+    <form class="bg-white rounded-xl w-110 p-6"
+          th:action="@{/classroom/{classroomId}/notice(classroomId=${classroom.id})}"
+          method="post" enctype="multipart/form-data"
+          onclick="event.stopPropagation();">
+        <h1 class="text-lg">공지올리기</h1>
+        <div class="h-40 border-t border-b my-2">
+            <textarea class="h-full w-full resize-none p-2 text-sm focus:outline-none" name="content"></textarea>
+        </div>
+        <div class="flex justify-between items-center">
+            <input name="attachment" type="file" multiple outline-none class="w-4/5"/>
+            <button class="px-4 py-2 bg-emerald-600 text-white rounded-3xl">게시</button>
+        </div>
+    </form>
+</div>
+<script>
+    function sendDailyCheck(elm) {
+        const xhr = new XMLHttpRequest();
+        const cid = elm.dataset.cid;
+        xhr.open("post", "/ajax/classroom/" + cid + "/dailyCheck");
+        xhr.onloadend = function() {
+            //  window.alert(xhr.responseText);
+            if(xhr.responseText==="checked") {
+                elm.innerHTML = "<span>출석 완료</span>";
+
+                elm.classList.remove("bg-white/90", "hover:bg-white", "text-emerald-700");
+                elm.classList.add("bg-black/90", "hover:bg-black", "text-white");
+                elm.disabled = true;
+            }
+        }
+        xhr.send();
+    }
+
+
+    function showWriteModal() {
+        document.getElementById("writeModal").classList.remove("hidden");
+    }
+
+    function closeWriteModal() {
+        document.getElementById("writeModal").classList.add("hidden");
+    }
+</script>
+
+</body>
+</html>

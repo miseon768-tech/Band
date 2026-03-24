@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Classroom 계정만들기</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+<div class="w-full h-screen flex justify-center items-center bg-gray-100">
+    <div class="w-3xl h-auto p-10 rounded-lg flex bg-white">
+        <div class="flex-1">
+            <h1 class="text-3xl">기본 정보</h1>
+            <p class="mt-5">
+                프로필에 표시될 기본 정보를 입력하세요.
+            </p>
+        </div>
+        <div class="flex-1 ">
+            <form class="space-y-2" action="/signup/profile" method="post" autocomplete="off">
+                <input name="name" type="text" class="border border-stone-400 rounded px-4 py-2 w-full"
+                       placeholder="이름"/>
+                <div class="grid grid-cols-3 gap-2">
+                    <input name="year" type="text"
+                           class="border border-stone-400 rounded px-4 py-2" placeholder="연"/>
+                    <select name="month"
+                            class="text-stone-500  border border-stone-400 rounded px-4 py-2  appearance-none"
+                            placeholder="월" onchange="this.classList.remove('text-stone-500');">
+                        <option hidden disabled selected value="">월</option>
+                        <option th:each="val : ${#numbers.sequence(1, 12)}"
+                                th:text="|${val}월|" th:value="${val}"></option>
+                    </select>
+                    <input name="day" type="text" class=" border border-stone-400 rounded px-4 py-2 "
+                           placeholder="일"/>
+                </div>
+                <select name="gender"
+                        class="text-stone-500  border border-stone-400 rounded px-4 py-2  appearance-none w-full"
+                        onchange="this.classList.remove('text-stone-500');">
+                    <option hidden disabled selected value="">성별</option>
+                    <option>여자</option>
+                    <option>남자</option>
+                    <option>공개안함</option>
+                </select>
+                <div class="mt-3 text-right">
+                    <button class="border rounded px-2 py-1">제출</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

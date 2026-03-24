@@ -1,9 +1,7 @@
-import org.gradle.internal.impldep.org.bouncycastle.asn1.x500.style.RFC4519Style.l
-
 plugins {
-	java
-	id("org.springframework.boot") version "3.5.9"
+	id("org.springframework.boot") version "3.2.5"
 	id("io.spring.dependency-management") version "1.1.7"
+	java
 }
 
 group = "com.example"
@@ -12,13 +10,7 @@ description = "BandProject"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
-}
-
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
+		languageVersion.set(JavaLanguageVersion.of(21))
 	}
 }
 
@@ -27,15 +19,32 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.mysql:mysql-connector-j")
-	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-thymeleaf-test")
-	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // 핵심 웹 스타터
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // MyBatis 추가 (Spring Boot 3용 최신 버전)
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3")
+
+    // 타임리프 템플릿 엔진
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    // 롬복
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    // 개발 편의 도구 및 DB
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    runtimeOnly("com.mysql:mysql-connector-j")
+
+    // 테스트 도구
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // 메일 발송을 위한 스타터 라이브러리 추가
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+
+    // Spring Security 추가
+    implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 tasks.withType<Test> {

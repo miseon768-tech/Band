@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Classroom</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+</head>
+<body>
+    <!-- 상단 헤더 -->
+    <header class="flex justify-between px-3 py-2 items-center border-b border-b-slate-400">
+        <img src="/images/logo-wide.png" class="w-40 hover:rotate-z-360 duration-1000"/>
+        <div>
+            <button class="flex px-4 py-2 border border-slate-300 text-slate-400
+                rounded-3xl cursor-pointer items-center space-x-1
+                hover:bg-blue-300 hover:border-blue-500 hover:text-blue-500 duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 hover:scale-105">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+
+                <span class="text-lg">로그인</span>
+            </button>
+        </div>
+    </header>
+    <main class="mt-12">
+        <section class="max-w-3xl mx-auto text-center">
+            <h1 class="text-5xl font-black">교육과 학습이 하나가 되는 곳</h1>
+            <p class="mt-6 leading-8 max-w-[600px] mx-auto">
+                 클래스룸을 사용하면 교육자가 맞춤설정, 관리, 측정이 가능한 흥미로운 학습 경험을 조성할 수 있습니다.
+                 교육자가 교육 효과를 확대하고 학생의 미래 대비 역량을 강화하도록 도와줍니다.
+            </p>
+            <div class="mt-6 flex justify-center">
+                <a href="/login"
+                        class="px-5 py-2 border border-slate-300 text-blue-500
+                font-extrabold rounded-3xl hover:border-blue-500 hover:bg-gray-100 cursor-pointer">클래스 룸 로그인하기</a>
+            </div>
+        </section>
+        <section class="max-w-3xl mx-auto mt-30 flex justify-center">
+            <div class="px-10 shadow rounded-3xl">
+                <ul class="flex space-x-5 font-bold text-sm">
+                    <li class="px-2 py-4 hover:bg-blue-100 hover:text-blue-500 cursor-pointer duration-200">학습 맞춤설정</li>
+                    <li class="px-2 py-4 hover:bg-blue-100 hover:text-blue-500 cursor-pointer duration-200">일상 업무 간소화</li>
+                    <li class="px-2 py-4 hover:bg-blue-100 hover:text-blue-500 cursor-pointer duration-200">유용한 정보 및 가시성 확보</li>
+                </ul>
+            </div>
+        </section>
+
+
+    </main>
+</body>
+</html>
