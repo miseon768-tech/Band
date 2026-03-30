@@ -41,7 +41,7 @@
                         <span class="text-sm text-red-500 hidden">이메일을 입력하세요.</span>
                     </div>
                     <div class="mt-3 text-right">
-                        <button class="border rounded px-2 py-1" disabled>다음</button>
+                        <button id="nextBtn" class="border rounded px-2 py-1" type="submit" disabled>다음</button>
                     </div>
                 </form>
             </div>
@@ -64,6 +64,21 @@
             xhr.send();
         }
 
+        function updateNextBtnState() {
+            const $id = document.getElementById("id");
+            const $password = document.getElementById("password");
+            const $email = document.getElementById("email");
+            const $nextBtn = document.getElementById("nextBtn");
+            if($id.value && $password.value && $email.value) {
+                $nextBtn.disabled = false;
+            } else {
+                $nextBtn.disabled = true;
+            }
+        }
+
+        document.getElementById("id").addEventListener("input", updateNextBtnState);
+        document.getElementById("password").addEventListener("input", updateNextBtnState);
+        document.getElementById("email").addEventListener("input", updateNextBtnState);
 
         function formCheck() {
             const $id = document.getElementById("id");
@@ -92,8 +107,6 @@
                 }
                 return false;
             }
-
-
 
         }
     </script>

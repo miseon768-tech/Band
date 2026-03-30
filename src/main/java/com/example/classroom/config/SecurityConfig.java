@@ -24,6 +24,9 @@ public class SecurityConfig implements WebMvcConfigurer {
             )
             .logout(logout -> logout
                 .permitAll()
+            )
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/signup/**", "/ajax/signup/**")
             );
         return http.build();
     }
